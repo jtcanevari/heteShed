@@ -141,7 +141,9 @@ std::vector<int> whichFunc(std::vector<int> x, int y) {
 /*----------------------------------------------------------*/
 
   // [[Rcpp::export]]
-Rcpp::List jose1_func(std::vector<double> par) {
+//Rcpp::List qFmixDistArray(std::vector<double> par) {
+Rcpp::NumericMatrix qFmixDistArray(std::vector<double> par) {
+
 /*----------------------------*/
 /*- int main -----------------*/
 /*----------------------------*/
@@ -498,7 +500,7 @@ Rcpp::List jose1_func(std::vector<double> par) {
 /*----------------------------*/
 /*----------------------------*/
 //  Returns to R ----------------------------------------------
-
+/*
 	List ret;
 	ret["time"] = t_vec;
 	ret["SNP"] = SNP_vec;
@@ -514,7 +516,7 @@ Rcpp::List jose1_func(std::vector<double> par) {
 	//ret["A"] = A_vec;
 
 	return ret;
+*/
 
-
-	//return myArray;
+	return myArray;
 }
