@@ -20,4 +20,8 @@ library(fitdistrplus )
 
 fit.gamma <- fitdist(df$iP, distr = "gamma", method = "mle")
 summary(fit.gamma)
+plot(fit.gamma)
 
+scale = 2.911
+
+hist(rgamma(1000, shape = 15.34, scale=2.911))

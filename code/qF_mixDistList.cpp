@@ -148,7 +148,7 @@ Rcpp::List qFmixDistList(std::vector<double> par) {
 
 	// Initialize a random number generator.
 	// This constructor seeds the generator with the current time.
-	double seed = par[7];
+	double seed = par[6];
 	rng_type rng(seed);
 
     //initialize starting and end time
@@ -206,7 +206,7 @@ Rcpp::List qFmixDistList(std::vector<double> par) {
 	int JNP = std::count(vstate.begin(), vstate.end(), 8);
 
 	//name parameters
-	double gamma = par[0], muE = par[1], phi = par[2], fI = par[3], iP = par[4], alpha = par[5], omega = par[6];
+	double gamma = par[0], muE = par[1], phi = par[2], fI = par[3], alpha = par[4], omega = par[5];
 	double E = 0, rates[4];
 	
 	// vectors to store outputs
@@ -420,7 +420,7 @@ Rcpp::List qFmixDistList(std::vector<double> par) {
 				index = subVstate[runif_int(0, subVstate.size() - 1, rng)];
 
 				t_inf = t + tstep; // time of infection
-				if ((t_inf + iP) > kidDate[index]) { //if infection+iP is beyond kiddingDate then it's an IP2 (late infection)
+				if ((t_inf + rgamma(15.34,2.911,rng)) > kidDate[index]) { //if infection+iP is beyond kiddingDate then it's an IP2 (late infection)
 					vstate[index] = 7;
 				} else {
 				
@@ -436,10 +436,10 @@ Rcpp::List qFmixDistList(std::vector<double> par) {
 					rval = runif(0.0, 1.0, rng);
 					if (rval <= fI) { abort = true; } //define if aborts and change kidding date accordingly
 					if (abort) {
-						if ((t_inf + iP) < kidDate[index] - 50) {
+						if ((t_inf + rgamma(15.34,2.911,rng)) < kidDate[index] - 50) {
 							kidDate[index] = kidDate[index] - runif(0.0, 50.0, rng);
 						} else {
-							kidDate[index] = t_inf + iP;
+							kidDate[index] = t_inf + rgamma(15.34,2.911,rng);
 						}
 						shedClass[index] = 1; //if abort then necessarily shedClass 1
 					}

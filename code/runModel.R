@@ -15,7 +15,6 @@ par <- c('gamma' = 0.05 ,
          'mu' = 0.2 ,
          'phi' = 0.85 ,
          'fI' = 0.3,
-         'iP' =  45,
          'alpha' = 0.3 ,
          'omega' = 0.2  ,
          'seed' = runif(1) )
@@ -35,10 +34,10 @@ colnames(out) <- c('year','parity', 'nkid','nkif', 'nabo')
 
 rval<- out %>% group_by(year) %>% summarise_each(list(sum)) #grouping by year but not parity
 rval$kidPrev <- rval$nkif/rval$nkid
-plot(rval$year, rval$kidPrev, type = 'o')
 
+plot(rval$year, rval$kidPrev, type = 'o')
 rval$aboPrev <- rval$nabo/(rval$nkid+rval$nabo)
-lines(rval$year, rval$aboPrev, type = 'l',col = 'red')
+lines(rval$year, rval$aboPrev,col = 'red', type='o', pch=4)
 
 
 
